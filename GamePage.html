@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+    <head>
+        <title>Assignment 1 - Games</title>
+        <link rel="stylesheet" href="Assignment1.css">
+    </head>
+
+    <body>
+        <!--Header-->
+        <header id="bar">
+            <h1>Games</h1>
+        </header>
+
+        <!--Navigation-->
+        <nav id="main-nav">
+            <ul>
+                <a href="HomePage.html" target="_self"><li>Home</li></a>
+                <a href="GamePage.html" target="_self"><li>Games</li></a>
+                <a href="ContactPage.html" target="_self"><li>Contact Me</li></a>
+            </ul>
+        </nav>
+
+        <!--Main Content-->
+        <h1>Rock - Paper - Scissors</h1>
+        <hr>
+        <form id="game" onsubmit="winner(); return false">
+            <div>
+                <label>Select Your Choice:</label>
+                <select id="playerChoice">
+                    <option value="Rock">Rock</option>
+                    <option value="Paper">Paper</option>
+                    <option value="Scissors">Scissors</option>
+                </select>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        <hr>
+
+        <div class="playerBox">
+            <h2>You Chose: <span id="player"></span> </h2> 
+        </div>
+        <div class="computerBox">
+            <h2>Computer Chose: <span id="computer"></span> </h2>
+        </div>
+
+        <!--Footer-->
+        <footer id="bar">
+            <p>This is a footer: Copyright...</p>
+        </footer>
+
+        <!--JavaScript-->
+        <script type="text/javascript">
+        function winner() {
+            const playerChose = document.getElementById("playerChoice").value;
+            const computerChoices = ["Rock", "Paper", "Scissors", "SPOCK"];
+            const computerChose = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+            document.getElementById("player").innerText = playerChose || "Nothing";
+            document.getElementById("computer").innerText = computerChose;
+
+            let result = '';
+
+            if (
+                (playerChose === 'Rock' && computerChose === 'Scissors') ||
+                (playerChose === 'Paper' && computerChose === 'Rock') ||
+                (playerChose === 'Scissors' && computerChose === 'Paper')
+            ) {
+                result = 'Win'
+            } else if (playerChose === computerChose) {
+                result = 'Tie';
+            } else if (computerChose === 'SPOCK') {
+                result = 'Lose';
+            } else {
+                result = 'Lose';
+            }
+
+            switch(result) {
+                case 'Win':
+                    alert('You Win')
+                    document.body.style.backgroundColor = 'lightgreen';
+                    break;
+                case 'Tie':
+                    alert('Tie')
+                    document.body.style.backgroundColor = 'mediumblue';
+                    break;
+                case 'Lose':
+                    alert('You Lose')
+                    document.body.style.backgroundColor = 'red';
+                    break;
+            } 
+        }
+
+        </script>
+    </body>
+</html>
